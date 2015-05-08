@@ -1,3 +1,25 @@
+#board {
+	width: 485px;
+	margin: 0 auto;
+}
+
+td {
+	width: 150px;
+	height: 120px;
+	border-color: black;
+	border-style: solid;
+	border-width: 3px;
+}
+
+td:hover {
+	background: pink;
+}
+
 h1 {
-	color: red;
+	text-align: center;
+}
+
+.box {
+	font-size: 30px;
+	text-align: center;
 }
