@@ -2,12 +2,12 @@ var boxes = document.getElementsByClassName('box');
 var turn = 0;
 
 function takeTurns() {
-	turn ++;
+	turn++;
 	if (turn % 2 === 0) {
 		return "x";
 	} else {
 		return "o";
-	}
+	} 
 }
 
 chooseBox();
@@ -15,43 +15,58 @@ chooseBox();
 function chooseBox() {
 	for (var i = 0; i < boxes.length; i++) {
 		boxes[i].addEventListener('click', function() {
-			this.innerHTML = takeTurns();
-		})
-	}
-	getWinner();
+			if (this.innerHTML === "x" || this.innerHTML === "o") {
+				alert("this cell has already been chosen, please select another cell");
+			} else {
+				this.innerHTML = takeTurns();
+				getWinner();
+			}
+		});
+	} 
 }
 
 function getWinner() {
-	if (isWinner("x")) {
-		console.log("x");
-	} else if (isWinner("o")) {
-		console.log("o");
-	} else {
-		return null;
+	if (((boxes[0].innerHTML === "x") && (boxes[1].innerHTML === "x") && (boxes[2].innerHTML === "x")) ||
+	   ((boxes[3].innerHTML === "x") && (boxes[4].innerHTML === "x") && (boxes[5].innerHTML === "x")) ||
+	   ((boxes[6].innerHTML === "x") && (boxes[7].innerHTML === "x") && (boxes[8].innerHTML === "x"))) {
+		alert("x wins!");
+		for (var i = 0; i < boxes.length; i++) {
+			boxes[i].innerHTML = null;
+		}
+	} else if (((boxes[0].innerHTML === "x") && (boxes[3].innerHTML === "x") && (boxes[6].innerHTML === "x")) ||
+	   ((boxes[1].innerHTML === "x") && (boxes[4].innerHTML === "x") && (boxes[7].innerHTML === "x")) ||
+	   ((boxes[2].innerHTML === "x") && (boxes[5].innerHTML === "x") && (boxes[8].innerHTML === "x"))) {
+		alert("x wins!");
+		for (var i = 0; i < boxes.length; i++) {
+			boxes[i].innerHTML = null;
+		}		
+	} else if (((boxes[0].innerHTML === "x") && (boxes[4].innerHTML === "x") && (boxes[8].innerHTML === "x")) ||
+	   ((boxes[2].innerHTML === "x") && (boxes[4].innerHTML === "x") && (boxes[6].innerHTML === "x"))) {
+		alert("x wins!");
+		for (var i = 0; i < boxes.length; i++) {
+			boxes[i].innerHTML = null;
+		}		
+	} else if (((boxes[0].innerHTML === "o") && (boxes[1].innerHTML === "o") && (boxes[2].innerHTML === "o")) ||
+	   ((boxes[3].innerHTML === "o") && (boxes[4].innerHTML === "o") && (boxes[5].innerHTML === "o")) ||
+	   ((boxes[6].innerHTML === "o") && (boxes[7].innerHTML === "o") && (boxes[8].innerHTML === "o"))) {
+		alert("o wins!");
+		for (var i = 0; i < boxes.length; i++) {
+			boxes[i].innerHTML = null;
+		}		
+	} else if (((boxes[0].innerHTML === "o") && (boxes[3].innerHTML === "o") && (boxes[6].innerHTML === "o")) ||
+	   ((boxes[1].innerHTML === "o") && (boxes[4].innerHTML === "o") && (boxes[7].innerHTML === "o")) ||
+	   ((boxes[2].innerHTML === "o") && (boxes[5].innerHTML === "o") && (boxes[8].innerHTML === "o"))) {
+		alert("o wins!");
+		for (var i = 0; i < boxes.length; i++) {
+			boxes[i].innerHTML = null;
+		}		
+	} else if (((boxes[0].innerHTML === "o") && (boxes[4].innerHTML === "o") && (boxes[8].innerHTML === "o")) ||
+	   ((boxes[2].innerHTML === "o") && (boxes[4].innerHTML === "o") && (boxes[6].innerHTML === "o"))) {
+		alert("o wins!");
+		for (var i = 0; i < boxes.length; i++) {
+			boxes[i].innerHTML = null;
+		}		
 	}
 }
 
-function isWinner(player) {
-	return winsRow(player) || winsColumn(player) || winsDiagonal(player);
-}
 
-function winsRow(player) {
-	return allThree(player, boxes[0], boxes[1], boxes[2]) ||
-		   allThree(player, boxes[3], boxes[4], boxes[5]) ||
-		   allThree(player, boxes[6], boxes[7], boxes[8]);
-}
-
-function winsColumn(player) {
-	return allThree(player, boxes[0], boxes[3], boxes[6]) ||
-		   allThree(player, boxes[1], boxes[4], boxes[7]) ||
-		   allThree(player, boxes[2], boxes[5], boxes[8]);
-}
-
-function winsDiagonal(player) {
-	return allThree(player, boxes[0], boxes[4], boxes[8]) ||
-		   allThree(player, boxes[2], boxes[4], boxes[6]);
-}
-
-function allThree(player, cell_one, cell_two, cell_three) {
-	return (cell_one === player) && (cell_two === player) && (cell_three === player);
-}
