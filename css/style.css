@@ -1,5 +1,11 @@
 #board {
+	cursor: url(../images/Ice_Cube_Icon.png), auto;
 	width: 462px;
+	margin: 0 auto;
+}
+
+#scoreboard{
+	width: 150px;
 	margin: 0 auto;
 }
 
@@ -22,4 +28,9 @@ h1 {
 .box {
 	font-size: 30px;
 	text-align: center;
+}
+
+img {
+	width: 100px;
+	height: 100px;
 }

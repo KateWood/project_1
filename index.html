@@ -7,23 +7,29 @@
 </head>
 <body>
 <h1>Tic-Tac-Toe</h1>
-		<div id="board">
-		<table border="1" style="square:100%">
-			<tr>
-				<td class="box"></td>
-				<td class="box"></td>
-				<td class="box"></td>
-			</tr>
-			<tr>
-				<td class="box"></td>
-				<td class="box"></td>
-				<td class="box"></td>
-			</tr>
-			<tr>
-				<td class="box"></td>
-				<td class="box"></td>
-				<td class="box"></td>
-			</tr>
+	<div id="container">
+		<div id="scoreboard">
+			<h3>Player 1: <span id="p1score">0</span> wins</h3>
+			<h3>Player 2: <span id="p2score">0</span> wins</h3>
+		</div>
+		<div>
+			<table id="board" style="square:100%">
+				<tr>
+					<td class="box"></td>
+					<td class="box"></td>
+					<td class="box"></td>
+				</tr>
+				<tr>
+					<td class="box"></td>
+					<td class="box"></td>
+					<td class="box"></td>
+				</tr>
+				<tr>
+					<td class="box"></td>
+					<td class="box"></td>
+					<td class="box"></td>
+				</tr>
+		</div>
 	</div>
 	<script src="js/app.js"></script>
 </body>

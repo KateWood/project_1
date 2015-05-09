@@ -4,12 +4,12 @@ var p1 = 0;
 var p2 = 0;
 
 function takeTurns() {
-	turn++;
-	if (turn % 2 === 0) {
-		return "o";
-	} else {
-		return "x";
-	} 
+  turn++;
+  if (turn % 2 === 0) {
+    return "o";
+  } else {
+    return "x";
+  } 
 }
 
 chooseBox();
