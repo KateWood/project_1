@@ -67,12 +67,20 @@ function getWinner() {
         }
         return;
     }
+    // check for tie
+    var cellEmpty = false;
+    for (var i = 0; i < boxes.length; i++) {
+      console.log(boxes[i].innerHTML);
+      if (boxes[i].innerHTML == "") {
+        cellEmpty = true;
+      }
+    }
+    if (cellEmpty === false) {
+      alert("It's a tie!");
+      for (var i = 0; i < boxes.length; i++) {
+          boxes[i].innerHTML = null;
+      }
+    }
+
 }
-
-
-
-
-
-
-
 
