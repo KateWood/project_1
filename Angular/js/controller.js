@@ -1,3 +1,9 @@
+angular
+  .module('myApp', [])
+    .controller("TicTacToeController", TicTacToeController() {
+      
+    })
+
 var boxes = document.getElementsByClassName('box');
 var turn = 0;
 var p1 = 0;
