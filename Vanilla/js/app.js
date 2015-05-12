@@ -77,6 +77,9 @@ function getWinner() {
     }
     if (cellEmpty === false) {
       alert("It's a tie!");
+      for (var i = 0; i < boxes.length; i++) {
+          boxes[i].innerHTML = null;
+      }
     }
 
 }
