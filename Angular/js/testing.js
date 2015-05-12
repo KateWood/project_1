@@ -67,11 +67,6 @@ function getWinner() {
         }
         return;
     }
-    // check for tie
-    if (boxes.indexof(null) == "-1") {
-            alert("It's a tie!")
-        }
-
 }
 
 
