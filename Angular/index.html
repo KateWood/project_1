@@ -6,7 +6,7 @@
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 
 </head>
-<body ng-app="myApp">
+<body ng-app="myApp" ng-controller="TicTacToeController as TTTCtrl">
 <h1>Tic-Tac-Toe</h1>
 	<div id="container">
 		<div id="scoreboard">
@@ -16,19 +16,19 @@
 		<div>
 			<table id="board" style="square:100%">
 				<tr>
-					<td class="box"></td>
-					<td class="box"></td>
-					<td class="box"></td>
+					<td ng-model="TTTCtrl.box0">6</td>
+					<td ng-model="TTTCtrl.box1"></td>
+					<td ng-model="TTTCtrl.box2"></td>
 				</tr>
 				<tr>
-					<td class="box"></td>
-					<td class="box"></td>
-					<td class="box"></td>
+					<td ng-model="TTTCtrl.box3"></td>
+					<td ng-model="TTTCtrl.box4"></td>
+					<td ng-model="TTTCtrl.box5"></td>
 				</tr>
 				<tr>
-					<td class="box"></td>
-					<td class="box"></td>
-					<td class="box"></td>
+					<td ng-model="TTTCtrl.box6"></td>
+					<td ng-model="TTTCtrl.box7"></td>
+					<td ng-model="TTTCtrl.box8"></td>
 				</tr>
 		</div>
 	</div>

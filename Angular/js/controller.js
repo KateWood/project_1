@@ -1,8 +1,16 @@
 angular
   .module('myApp', [])
-    .controller("TicTacToeController", TicTacToeController() {
-      
-    })
+    .controller("TicTacToeController", TicTacToeController)
+
+function TicTacToeController () {
+  var self = this;
+  self.box1 = self.box1;
+  self.boxes = [self.box0, self.box1, self.box2,
+                self.box3, self.box4, self.box5,
+                self.box6, self.box7, self.box8]
+
+
+    }
 
 var boxes = document.getElementsByClassName('box');
 var turn = 0;
