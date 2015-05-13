@@ -14,13 +14,29 @@
 	margin: 0 auto;
 }
 
-#scoreboard{
+.isX {
+	background-image: url(../images/2000px-FireIcon.svg.png);
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.isO {
+	background-image: url(../images/Ice_Cube_Icon.png);
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+#scoreboard {
 	width: 150px;
 	margin: 0 auto;
 }
 
+#gameStatusMessage {
+	text-align: center;
+}
+
 .boxes:hover {
-	background: pink;
+	background-color: pink;
 }
 
 h1 {

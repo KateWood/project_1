@@ -10,12 +10,17 @@
 <h1>Tic-Tac-Toe</h1>
 	<div id="container">
 		<div id="scoreboard">
-			<h3>Player 1: <span id="p1score">0</span> wins</h3>
-			<h3>Player 2: <span id="p2score">0</span> wins</h3>
+			<!-- play scores retrieved from controller -->
+			<h3>Player 1: {{ tttCtrl.p1 }} wins</h3>
+			<h3>Player 2: {{ tttCtrl.p2 }} wins</h3>
 		</div>
-		<!-- display board -->
+		<div id="gameStatusMessage">
+			<!-- current status of game -->
+			<h2>{{ tttCtrl.gameStatus }}</h2>
+		</div>
+		<!-- displays board -->
 		<div id="board">
-			<div class="boxes" ng-repeat="box in tttCtrl.boxes" ng-click="tttCtrl.chooseBox($index)">
+			<div class="boxes" ng-repeat="box in tttCtrl.boxes" ng-click="tttCtrl.chooseBox($index)" ng-class="{ 'isX': box.isX, 'isO': box.isO }">
 			</div>
 		</div>
 	</div>

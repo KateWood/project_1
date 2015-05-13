@@ -12,6 +12,9 @@ function TicTacToeController () {
     self.p1 = 0;
     self.p2 = 0;
 
+    //sets game status as game in progress
+    self.gameStatus = "Game in progress";
+
     // sets boxes as an array
     self.boxes = [ {isX: false, isO: false},
                    {isX: false, isO: false},
@@ -30,10 +33,13 @@ function TicTacToeController () {
     // attaches chooseBox to the controller
     self.chooseBox = chooseBox;
 
-    // alternate between players 1 and 2
+    //attaches getWinner to the controller
+    self.getWinner = getWinner;
+
+    // alternates between players 1 and 2
     function takeTurns() {
-        turn++;
-        if (turn % 2 === 0) {
+        self.turn++;
+        if (self.turn % 2 === 0) {
           return "o";
         } else {
           return "x";
@@ -42,87 +48,76 @@ function TicTacToeController () {
 
     // reacts to box being clicked
     function chooseBox(index) {
-      if (self.boxes[index].isX === false) {
-        
-      }
-    }
-
-}
-
-// var boxes = document.getElementsByClassName('box');
-// var turn = 0;
-// var p1 = 0;
-// var p2 = 0;
-
-function takeTurns() {
-  // alternate between players 1 and 2
-  turn++;
-  if (turn % 2 === 0) {
-    return "o";
-  } else {
-    return "x";
-  } 
-}
-
-chooseBox();
-
-function chooseBox() {
-  // react to box being clicked
-  for (var i = 0; i < boxes.length; i++) {
-      boxes[i].addEventListener('click', function() {
-        if (this.innerHTML !== "") {
+        if ((self.boxes[index].isX === true) || (self.boxes[index].isO === true)) {
           alert("Oops! This cell is already taken. Please select a different cell.");
-        } else {
-          this.innerHTML = takeTurns();
-          // check for winner
-          getWinner();
+          return;
         }
-      });
-  } 
-}
-
-function getWinner() {
-    // check for x win
-    if (((boxes[0].innerHTML === "x") && (boxes[1].innerHTML === "x") && (boxes[2].innerHTML === "x")) ||
-       ((boxes[3].innerHTML === "x") && (boxes[4].innerHTML === "x") && (boxes[5].innerHTML === "x")) ||
-       ((boxes[6].innerHTML === "x") && (boxes[7].innerHTML === "x") && (boxes[8].innerHTML === "x")) ||
-       ((boxes[0].innerHTML === "x") && (boxes[3].innerHTML === "x") && (boxes[6].innerHTML === "x")) ||
-       ((boxes[1].innerHTML === "x") && (boxes[4].innerHTML === "x") && (boxes[7].innerHTML === "x")) ||
-       ((boxes[2].innerHTML === "x") && (boxes[5].innerHTML === "x") && (boxes[8].innerHTML === "x")) ||
-       ((boxes[0].innerHTML === "x") && (boxes[4].innerHTML === "x") && (boxes[8].innerHTML === "x")) ||
-       ((boxes[2].innerHTML === "x") && (boxes[4].innerHTML === "x") && (boxes[6].innerHTML === "x")))
-    {
-        alert("x wins!");
-        p1++;
-        document.getElementById('p1score').innerHTML = p1;
-        for (var i = 0; i < boxes.length; i++) {
-          boxes[i].innerHTML = null;
+        var myTurn = takeTurns();
+        if (myTurn === "o") {
+          self.boxes[index].isO = true;
         }
-        return;
+        else if (myTurn === "x") {
+          self.boxes[index].isX = true;
+        }
+        self.getWinner();
     }
-    // check for o win
-    if (((boxes[0].innerHTML === "o") && (boxes[1].innerHTML === "o") && (boxes[2].innerHTML === "o")) ||
-       ((boxes[3].innerHTML === "o") && (boxes[4].innerHTML === "o") && (boxes[5].innerHTML === "o")) ||
-       ((boxes[6].innerHTML === "o") && (boxes[7].innerHTML === "o") && (boxes[8].innerHTML === "o")) ||
-       ((boxes[0].innerHTML === "o") && (boxes[3].innerHTML === "o") && (boxes[6].innerHTML === "o")) ||
-       ((boxes[1].innerHTML === "o") && (boxes[4].innerHTML === "o") && (boxes[7].innerHTML === "o")) ||
-       ((boxes[2].innerHTML === "o") && (boxes[5].innerHTML === "o") && (boxes[8].innerHTML === "o")) ||
-       ((boxes[0].innerHTML === "o") && (boxes[4].innerHTML === "o") && (boxes[8].innerHTML === "o")) ||
-       ((boxes[2].innerHTML === "o") && (boxes[4].innerHTML === "o") && (boxes[6].innerHTML === "o")))
-    {
-        alert("o wins!");
-        p2++;
-        document.getElementById('p2score').innerHTML = p2;
-        for (var i = 0; i < boxes.length; i++) {
-          boxes[i].innerHTML = null;
+
+    //checks for a winner
+    function getWinner() {
+        //check for x win
+        if (((self.boxes[0].isX === true) && (self.boxes[1].isX === true) && (self.boxes[2].isX === true)) ||
+           ((self.boxes[3].isX === true) && (self.boxes[4].isX === true) && (self.boxes[5].isX === true)) ||
+           ((self.boxes[6].isX === true) && (self.boxes[7].isX === true) && (self.boxes[8].isX === true)) ||
+           ((self.boxes[0].isX === true) && (self.boxes[3].isX === true) && (self.boxes[6].isX === true)) ||
+           ((self.boxes[1].isX === true) && (self.boxes[4].isX === true) && (self.boxes[7].isX === true)) ||
+           ((self.boxes[2].isX === true) && (self.boxes[5].isX === true) && (self.boxes[8].isX === true)) ||
+           ((self.boxes[0].isX === true) && (self.boxes[4].isX === true) && (self.boxes[8].isX === true)) ||
+           ((self.boxes[2].isX === true) && (self.boxes[4].isX === true) && (self.boxes[6].isX === true)))
+        {
+          alert('x wins!');
+          self.p1++;
+          for (var i = 0; i < self.boxes.length; i++) {
+          self.boxes[i].isX = false;
+          self.boxes[i].isO = false;
+          }
+          return;
         }
-        return;
+        //check for o win
+        if (((self.boxes[0].isO === true) && (self.boxes[1].isO === true) && (self.boxes[2].isO === true)) ||
+           ((self.boxes[3].isO === true) && (self.boxes[4].isO === true) && (self.boxes[5].isO === true)) ||
+           ((self.boxes[6].isO === true) && (self.boxes[7].isO === true) && (self.boxes[8].isO === true)) ||
+           ((self.boxes[0].isO === true) && (self.boxes[3].isO === true) && (self.boxes[6].isO === true)) ||
+           ((self.boxes[1].isO === true) && (self.boxes[4].isO === true) && (self.boxes[7].isO === true)) ||
+           ((self.boxes[2].isO === true) && (self.boxes[5].isO === true) && (self.boxes[8].isO === true)) ||
+           ((self.boxes[0].isO === true) && (self.boxes[4].isO === true) && (self.boxes[8].isO === true)) ||
+           ((self.boxes[2].isO === true) && (self.boxes[4].isO === true) && (self.boxes[6].isO === true)))
+        {
+          alert('o wins!');
+          self.p2++;
+          for (var i = 0; i < self.boxes.length; i++) {
+          self.boxes[i].isX = false;
+          self.boxes[i].isO = false;
+          }
+          return;
+        }
+        //checks for tie
+        var cellEmpty = false;
+        for (var i = 0; i < self.boxes.length; i++) {
+            if ((self.boxes[i].isX === false) && (self.boxes[i].isO === false)) {
+            cellEmpty = true;
+            }
+        }
+        if (cellEmpty === false) {
+            alert("It's a tie!");
+            for (var i = 0; i < self.boxes.length; i++) {
+          self.boxes[i].isX = false;
+          self.boxes[i].isO = false;
+          }
+        }
+    
     }
+
 }
-
-
-
-
 
 
 
