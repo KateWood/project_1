@@ -1,21 +1,58 @@
 angular
-  .module('myApp', [])
-    .controller("TicTacToeController", TicTacToeController)
+    .module('myApp')
+        .controller("TicTacToeController", TicTacToeController)
 
 function TicTacToeController () {
-  var self = this;
-  self.box1 = self.box1;
-  self.boxes = [self.box0, self.box1, self.box2,
-                self.box3, self.box4, self.box5,
-                self.box6, self.box7, self.box8]
+    var self = this;
 
+    // starts the turn counter at zero
+    self.turn = 0;
 
+    // starts both player scores at zero
+    self.p1 = 0;
+    self.p2 = 0;
+
+    // sets boxes as an array
+    self.boxes = [ {isX: false, isO: false},
+                   {isX: false, isO: false},
+                   {isX: false, isO: false},
+                   {isX: false, isO: false},
+                   {isX: false, isO: false},
+                   {isX: false, isO: false},
+                   {isX: false, isO: false},
+                   {isX: false, isO: false},
+                   {isX: false, isO: false}
+                 ];
+    
+    // attaches takeTurns to the controller
+    self.takeTurns = takeTurns;
+
+    // attaches chooseBox to the controller
+    self.chooseBox = chooseBox;
+
+    // alternate between players 1 and 2
+    function takeTurns() {
+        turn++;
+        if (turn % 2 === 0) {
+          return "o";
+        } else {
+          return "x";
+        } 
     }
 
-var boxes = document.getElementsByClassName('box');
-var turn = 0;
-var p1 = 0;
-var p2 = 0;
+    // reacts to box being clicked
+    function chooseBox(index) {
+      if (self.boxes[index].isX === false) {
+        
+      }
+    }
+
+}
+
+// var boxes = document.getElementsByClassName('box');
+// var turn = 0;
+// var p1 = 0;
+// var p2 = 0;
 
 function takeTurns() {
   // alternate between players 1 and 2
