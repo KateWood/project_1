@@ -9,18 +9,20 @@
 }
 
 #board {
-	cursor: url(../images/Ice_Cube_Icon.png), auto;
+	cursor: url(../images/pick-me.png), auto;
 	width: 474px;
 	margin: 0 auto;
 }
 
 .isX {
+	cursor: url(../images/stop-sign.png), auto;
 	background-image: url(../images/2000px-FireIcon.svg.png);
 	background-repeat: no-repeat;
 	background-position: center;
 }
 
 .isO {
+	cursor: url(../images/stop-sign.png), auto;
 	background-image: url(../images/Ice_Cube_Icon.png);
 	background-repeat: no-repeat;
 	background-position: center;
@@ -43,12 +45,4 @@ h1 {
 	text-align: center;
 }
 
-.box {
-	font-size: 30px;
-	text-align: center;
-}
 
-img {
-	width: 100px;
-	height: 100px;
-}
