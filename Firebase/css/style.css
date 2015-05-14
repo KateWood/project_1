@@ -1,0 +1,48 @@
+.boxes {
+	width: 150px;
+	height: 120px;
+	border-color: black;
+	border-style: solid;
+	border-width: 3px;
+	margin: 1px;
+	float: left;
+}
+
+#board {
+	cursor: url(../images/pick-me.png), auto;
+	width: 474px;
+	margin: 0 auto;
+}
+
+.isX {
+	cursor: url(../images/stop-sign.png), auto;
+	background-image: url(../images/2000px-FireIcon.svg.png);
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.isO {
+	cursor: url(../images/stop-sign.png), auto;
+	background-image: url(../images/Ice_Cube_Icon.png);
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+#scoreboard {
+	width: 150px;
+	margin: 0 auto;
+}
+
+#gameStatusMessage {
+	text-align: center;
+}
+
+.boxes:hover {
+	background-color: pink;
+}
+
+h1 {
+	text-align: center;
+}
+
+
