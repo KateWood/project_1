@@ -113,11 +113,17 @@ angular
 
             //clears board when game is over
             function resetBoard() {
-                for (var i = 0; i < self.boxes.length; i++) {
-                    self.boxes[i].isX = false;
-                    self.boxes[i].isO = false;
+                if (self.gameStatus === "Game in progress") {
+                    alert("Whoa! One game at a time!");
+                    return;
+                } else{
+                    for (var i = 0; i < self.boxes.length; i++) {
+                        self.boxes[i].isX = false;
+                        self.boxes[i].isO = false;
+                    }
+                    self.gameStatus = "Game in progress";
                 }
-                self.gameStatus = "Game in progress";
+                
             }
 
         }
