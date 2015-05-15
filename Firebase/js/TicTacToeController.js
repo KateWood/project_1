@@ -35,6 +35,31 @@ angular
             // attaches resetScores to the controller
             self.resetScores = resetScores;
 
+            // stores my player ID locally
+            self.myId = null;
+
+            self.getMyId = getMyId;
+
+            self.playerName = ""
+
+            // assigns player ID
+            function getMyId() {
+                if (self.gameBoard.player1.isHere === false) {
+                    self.gameBoard.player1.isHere = true;
+                    self.myId = self.playerName;
+                    self.gameBoard.player1.myName = self.myId;
+                }
+                else if (self.gameBoard.player2.isHere === false) {
+                    self.gameBoard.player2.isHere = true;
+                    self.myId = self.playerName;
+                    self.gameBoard.player2.myName = self.myId;
+                }
+                else {
+                    self.myId = "spectator";
+                }
+                self.gameBoard.$save(self.gameBoard);
+            }
+
             /*
              alternates between players 1 and 2
             */
@@ -124,7 +149,7 @@ angular
                      changes gameStatus & p1 score if x has won
                      stops looking for a win or tie
                     */
-                    self.gameBoard.gameStatus = "X wins!";
+                    self.gameBoard.gameStatus = self.gameBoard.player1.myName + " wins!";
                     self.gameBoard.p1++;
                     self.gameBoard.$save(self.gameBoard.p1);
                     return;
@@ -161,7 +186,7 @@ angular
                      changes gameStatus & p2 score if o has won
                      stops looking for a win or tie
                     */
-                    self.gameBoard.gameStatus = "O wins!";
+                    self.gameBoard.gameStatus = self.gameBoard.player2.myName + " wins!";
                     self.gameBoard.p2++;
                     self.gameBoard.$save(self.gameBoard.p2);
                     return;
@@ -237,6 +262,14 @@ angular
                     self.gameBoard.$save(self.gameBoard.tie);
                     self.gameBoard.turn = 0;
                     self.gameBoard.$save(self.gameBoard.turn);
+                    self.gameBoard.player1.isHere = false;
+                    self.gameBoard.$save(self.gameBoard.player1.isHere);
+                    self.gameBoard.player1.myName = "Fire";
+                    self.gameBoard.$save(self.gameBoard.player1.myName);
+                    self.gameBoard.player2.isHere = false;
+                    self.gameBoard.$save(self.gameBoard.player2.isHere);
+                    self.gameBoard.player2.myName = "Ice";
+                    self.gameBoard.$save(self.gameBoard.player2.myName);
                 }
                 
             }

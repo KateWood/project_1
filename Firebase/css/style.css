@@ -1,3 +1,12 @@
+#container {
+	margin: 0 auto;
+}
+
+FORM {
+	text-align: center;
+	margin: 10px;
+}
+
 .boxes {
 	width: 150px;
 	height: 120px;
@@ -12,6 +21,7 @@
 	cursor: url(../images/pick-me.png), auto;
 	width: 474px;
 	margin: 0 auto;
+	float: left;
 }
 
 .isX {
@@ -30,7 +40,8 @@
 
 #scoreboard {
 	width: 200px;
-	margin: 0 auto;
+	margin: 0 30px;
+	float: left;
 }
 
 #gameStatusMessage {
@@ -44,6 +55,7 @@
 
 H1 {
 	text-align: center;
+	width: 100%;
 }
 
 H3 {
