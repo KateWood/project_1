@@ -2,36 +2,24 @@ angular
     .module('myApp')
         .controller("TicTacToeController", TicTacToeController)
 
-        // injects $firebaseArray
-        TicTacToeController.$inject = ['$firebaseArray'];
+        // injects $firebaseObject
+        TicTacToeController.$inject = ['$firebaseObject'];
 
         /*
          TicTacToeController function -- must contain everything for the controller
         */
-        function TicTacToeController ($firebaseArray) {
+        function TicTacToeController ($firebaseObject) {
             
             // variable capture
             var self = this;
 
-            // starts the turn counter at zero
-            self.turn = 0;
-
-            // starts both player scores and tie count at zero
-            self.p1 = 0;
-            self.p2 = 0;
-            self.tie = 0;
-
-            // sets game status as game in progress
-            self.gameStatus = "Game in progress";
-
             // gets boxes array from firebase and attaches it to the controller
-            self.boxes = (function(){
-                var ref = new Firebase('https://tictactoekate.firebaseio.com/boxes');
-                var boxes = $firebaseArray(ref);
-                console.log(boxes);
-                return boxes;
+            self.gameBoard = (function(){
+                var ref = new Firebase('https://tictactoekate.firebaseio.com');
+                var gameBoard = $firebaseObject(ref);
+                return gameBoard;
             })();
-            
+
             // attaches takeTurns to the controller
             self.takeTurns = takeTurns;
 
@@ -44,13 +32,15 @@ angular
             // attaches resetBoard to the controller
             self.resetBoard = resetBoard;
 
+            // attaches resetScores to the controller
+            self.resetScores = resetScores;
+
             /*
              alternates between players 1 and 2
             */
             function takeTurns() {
-                
-                self.turn++;
-                if (self.turn % 2 === 0) {
+                self.gameBoard.turn++;
+                if (self.gameBoard.turn % 2 === 0) {
                     return "o";
                 }
                 else {
@@ -65,23 +55,22 @@ angular
              @param number index - provides the index of the box that was clicked
             */
             function chooseBox(index) {
-                
-                if (self.gameStatus === "Game in progress") {
-                    if ((self.boxes[index].isX === true) 
-                        || (self.boxes[index].isO === true)) 
+                if (self.gameBoard.gameStatus === "Game in progress") {
+                    if ((self.gameBoard.boxes[index].isX === true) 
+                        || (self.gameBoard.boxes[index].isO === true)) 
                     {
                         alert("Oops! This cell is already taken. Please select a different cell.");
                         return;
                     }
                     var myTurn = takeTurns();
                     if (myTurn === "o") {
-                        self.boxes[index].isO = true;
+                        self.gameBoard.boxes[index].isO = true;
                     }
                     else if (myTurn === "x") {
-                        self.boxes[index].isX = true;
+                        self.gameBoard.boxes[index].isX = true;
 
                     }
-                    self.boxes.$save(self.boxes[index]);
+                    self.gameBoard.$save(self.gameBoard.boxes);
                     self.getWinner();
                 }
 
@@ -106,80 +95,82 @@ angular
 
                 // checks for x win
                 if (
-                    ((self.boxes[0].isX === true) 
-                        && (self.boxes[1].isX === true) 
-                        && (self.boxes[2].isX === true)) 
-                    || ((self.boxes[3].isX === true) 
-                        && (self.boxes[4].isX === true) 
-                        && (self.boxes[5].isX === true)) 
-                    || ((self.boxes[6].isX === true) 
-                        && (self.boxes[7].isX === true) 
-                        && (self.boxes[8].isX === true)) 
-                    || ((self.boxes[0].isX === true) 
-                        && (self.boxes[3].isX === true) 
-                        && (self.boxes[6].isX === true)) 
-                    || ((self.boxes[1].isX === true) 
-                        && (self.boxes[4].isX === true) 
-                        && (self.boxes[7].isX === true)) 
-                    || ((self.boxes[2].isX === true) 
-                        && (self.boxes[5].isX === true) 
-                        && (self.boxes[8].isX === true)) 
-                    || ((self.boxes[0].isX === true) 
-                        && (self.boxes[4].isX === true) 
-                        && (self.boxes[8].isX === true)) 
-                    || ((self.boxes[2].isX === true) 
-                        && (self.boxes[4].isX === true) 
-                        && (self.boxes[6].isX === true))
+                    ((self.gameBoard.boxes[0].isX === true) 
+                        && (self.gameBoard.boxes[1].isX === true) 
+                        && (self.gameBoard.boxes[2].isX === true)) 
+                    || ((self.gameBoard.boxes[3].isX === true) 
+                        && (self.gameBoard.boxes[4].isX === true) 
+                        && (self.gameBoard.boxes[5].isX === true)) 
+                    || ((self.gameBoard.boxes[6].isX === true) 
+                        && (self.gameBoard.boxes[7].isX === true) 
+                        && (self.gameBoard.boxes[8].isX === true)) 
+                    || ((self.gameBoard.boxes[0].isX === true) 
+                        && (self.gameBoard.boxes[3].isX === true) 
+                        && (self.gameBoard.boxes[6].isX === true)) 
+                    || ((self.gameBoard.boxes[1].isX === true) 
+                        && (self.gameBoard.boxes[4].isX === true) 
+                        && (self.gameBoard.boxes[7].isX === true)) 
+                    || ((self.gameBoard.boxes[2].isX === true) 
+                        && (self.gameBoard.boxes[5].isX === true) 
+                        && (self.gameBoard.boxes[8].isX === true)) 
+                    || ((self.gameBoard.boxes[0].isX === true) 
+                        && (self.gameBoard.boxes[4].isX === true) 
+                        && (self.gameBoard.boxes[8].isX === true)) 
+                    || ((self.gameBoard.boxes[2].isX === true) 
+                        && (self.gameBoard.boxes[4].isX === true) 
+                        && (self.gameBoard.boxes[6].isX === true))
                 ){
                     /*
                      changes gameStatus & p1 score if x has won
                      stops looking for a win or tie
                     */
-                    self.gameStatus = "X wins!";
-                    self.p1++;
+                    self.gameBoard.gameStatus = "X wins!";
+                    self.gameBoard.p1++;
+                    self.gameBoard.$save(self.gameBoard.p1);
                     return;
                 }
                 
                 // checks for o win
                 if (
-                    ((self.boxes[0].isO === true) 
-                        && (self.boxes[1].isO === true) 
-                        && (self.boxes[2].isO === true)) 
-                    || ((self.boxes[3].isO === true) 
-                        && (self.boxes[4].isO === true) 
-                        && (self.boxes[5].isO === true)) 
-                    || ((self.boxes[6].isO === true) 
-                        && (self.boxes[7].isO === true) 
-                        && (self.boxes[8].isO === true)) 
-                    || ((self.boxes[0].isO === true) 
-                        && (self.boxes[3].isO === true) 
-                        && (self.boxes[6].isO === true)) 
-                    || ((self.boxes[1].isO === true) 
-                        && (self.boxes[4].isO === true) 
-                        && (self.boxes[7].isO === true)) 
-                    || ((self.boxes[2].isO === true) 
-                        && (self.boxes[5].isO === true) 
-                        && (self.boxes[8].isO === true)) 
-                    || ((self.boxes[0].isO === true) 
-                        && (self.boxes[4].isO === true) 
-                        && (self.boxes[8].isO === true)) 
-                    || ((self.boxes[2].isO === true) 
-                        && (self.boxes[4].isO === true) 
-                        && (self.boxes[6].isO === true))
+                    ((self.gameBoard.boxes[0].isO === true) 
+                        && (self.gameBoard.boxes[1].isO === true) 
+                        && (self.gameBoard.boxes[2].isO === true)) 
+                    || ((self.gameBoard.boxes[3].isO === true) 
+                        && (self.gameBoard.boxes[4].isO === true) 
+                        && (self.gameBoard.boxes[5].isO === true)) 
+                    || ((self.gameBoard.boxes[6].isO === true) 
+                        && (self.gameBoard.boxes[7].isO === true) 
+                        && (self.gameBoard.boxes[8].isO === true)) 
+                    || ((self.gameBoard.boxes[0].isO === true) 
+                        && (self.gameBoard.boxes[3].isO === true) 
+                        && (self.gameBoard.boxes[6].isO === true)) 
+                    || ((self.gameBoard.boxes[1].isO === true) 
+                        && (self.gameBoard.boxes[4].isO === true) 
+                        && (self.gameBoard.boxes[7].isO === true)) 
+                    || ((self.gameBoard.boxes[2].isO === true) 
+                        && (self.gameBoard.boxes[5].isO === true) 
+                        && (self.gameBoard.boxes[8].isO === true)) 
+                    || ((self.gameBoard.boxes[0].isO === true) 
+                        && (self.gameBoard.boxes[4].isO === true) 
+                        && (self.gameBoard.boxes[8].isO === true)) 
+                    || ((self.gameBoard.boxes[2].isO === true) 
+                        && (self.gameBoard.boxes[4].isO === true) 
+                        && (self.gameBoard.boxes[6].isO === true))
                 ){
                     /*
                      changes gameStatus & p2 score if o has won
                      stops looking for a win or tie
                     */
-                    self.gameStatus = "O wins!";
-                    self.p2++;
+                    self.gameBoard.gameStatus = "O wins!";
+                    self.gameBoard.p2++;
+                    self.gameBoard.$save(self.gameBoard.p2);
                     return;
                 }
                 
                 // checks for tie
                 var cellEmpty = false;
-                for (var i = 0; i < self.boxes.length; i++) {
-                    if ((self.boxes[i].isX === false) && (self.boxes[i].isO === false)) {
+                for (var i = 0; i < self.gameBoard.boxes.length; i++) {
+                    if ((self.gameBoard.boxes[i].isX === false) && (self.gameBoard.boxes[i].isO === false)) {
                         cellEmpty = true;
                     }
                 }
@@ -187,8 +178,10 @@ angular
                     /*
                      changes gameStatus & tie count if it is a tie
                     */
-                    self.gameStatus = "It's a tie!"
-                    self.tie++;
+                    self.gameBoard.gameStatus = "It's a tie!"
+                    self.gameBoard.$save(self.gameBoard.gameStatus);
+                    self.gameBoard.tie++;
+                    self.gameBoard.$save(self.gameBoard.tie);
                 }
             
             }
@@ -199,20 +192,51 @@ angular
             function resetBoard() {
                 
                 // prevents a game reset when a game is in progress
-                if (self.gameStatus === "Game in progress") {
+                if (self.gameBoard.gameStatus === "Game in progress") {
                     alert("Whoa! One game at a time!");
                     return;
                 }
                 // clears the board for a new game
                 else {
-                    for (var i = 0; i < self.boxes.length; i++) {
-                        self.boxes[i].isX = false;
-                        self.boxes[i].isO = false;
-                        self.boxes.$save(self.boxes[i]);
+                    for (var i = 0; i < self.gameBoard.boxes.length; i++) {
+                        self.gameBoard.boxes[i].isX = false;
+                        self.gameBoard.boxes[i].isO = false;
+                        self.gameBoard.$save(self.gameBoard.boxes[i]);
                     }
 
                     //resets the game status for the new game
-                    self.gameStatus = "Game in progress";
+                    self.gameBoard.gameStatus = "Game in progress";
+                    self.gameBoard.$save(self.gameBoard.gameStatus);
+                }
+                
+            }
+
+            function resetScores() {
+                // prevents a game reset when a game is in progress
+                // prevents a game reset when a game is in progress
+                if (self.gameBoard.gameStatus === "Game in progress") {
+                    alert("Whoa! One game at a time!");
+                    return;
+                }
+                // clears the board for a new game
+                else {
+                    for (var i = 0; i < self.gameBoard.boxes.length; i++) {
+                        self.gameBoard.boxes[i].isX = false;
+                        self.gameBoard.boxes[i].isO = false;
+                        self.gameBoard.$save(self.gameBoard.boxes[i]);
+                    }
+
+                    //resets the game status for the new game
+                    self.gameBoard.gameStatus = "Game in progress";
+                    self.gameBoard.$save(self.gameBoard.gameStatus);
+                    self.gameBoard.p1 = 0;
+                    self.gameBoard.$save(self.gameBoard.p1);
+                    self.gameBoard.p2 = 0;
+                    self.gameBoard.$save(self.gameBoard.p2);
+                    self.gameBoard.tie = 0;
+                    self.gameBoard.$save(self.gameBoard.tie);
+                    self.gameBoard.turn = 0;
+                    self.gameBoard.$save(self.gameBoard.turn);
                 }
                 
             }

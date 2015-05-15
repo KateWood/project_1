@@ -17,19 +17,20 @@
 		<div id="container">
 			<h1>Tic-Tac-Toe</h1>
 			<div id="scoreboard">
+			<button ng-click="tttCtrl.resetScores()">Start a new tournament!</button>
 				<!-- displays player scores retrieved from controller -->
-				<h3>Player 1: {{ tttCtrl.p1 }} wins</h3>
-				<h3>Player 2: {{ tttCtrl.p2 }} wins</h3>
-				<h3>Ties: {{ tttCtrl.tie }}</h3>
+				<h3>Player 1: {{ tttCtrl.gameBoard.p1 }} wins</h3>
+				<h3>Player 2: {{ tttCtrl.gameBoard.p2 }} wins</h3>
+				<h3>Ties: {{ tttCtrl.gameBoard.tie }}</h3>
 			</div>
 			<div id="gameStatusMessage">
 				<!-- displays current status of game -->
-				<h2>{{ tttCtrl.gameStatus }}</h2>
+				<h2>{{ tttCtrl.gameBoard.gameStatus }}</h2>
 				<button ng-click="tttCtrl.resetBoard()">Play again!</button>
 			</div>
 			<!-- displays board -->
 			<div id="board">
-				<div class="boxes" ng-repeat="box in tttCtrl.boxes" 
+				<div class="boxes" ng-repeat="box in tttCtrl.gameBoard.boxes" 
 					ng-click="tttCtrl.chooseBox($index)" 
 					ng-class="{ 'isX': box.isX, 'isO': box.isO }">
 				</div>
