@@ -1,3 +1,9 @@
+BODY {
+	background-image: url(../images/fvi_background.jpg);
+	background-size: 110%;
+	color: white;
+}
+
 #container {
 	margin: 0 auto;
 }
@@ -10,6 +16,7 @@ FORM {
 .boxes {
 	width: 150px;
 	height: 120px;
+	background-color: white;
 	border-color: black;
 	border-style: solid;
 	border-width: 3px;
@@ -29,6 +36,7 @@ FORM {
 	background-image: url(../images/2000px-FireIcon.svg.png);
 	background-repeat: no-repeat;
 	background-position: center;
+	background-color: orange;
 }
 
 .isO {
@@ -36,6 +44,7 @@ FORM {
 	background-image: url(../images/Ice_Cube_Icon.png);
 	background-repeat: no-repeat;
 	background-position: center;
+	background-color: lightblue;
 }
 
 #scoreboard {
@@ -61,4 +70,23 @@ H1 {
 H3 {
 	text-align: center;
 }
+
+.fire {
+	background-image: url(../images/fire_background.jpg);
+	color: blue;
+}
+
+.ice {
+	background-image: url(../images/ice_background.jpg);
+	color: black;
+}
+
+BUTTON {
+	color: black;
+}
+
+INPUT {
+	color: black;
+}
+
 

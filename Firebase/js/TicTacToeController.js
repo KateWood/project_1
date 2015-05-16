@@ -42,16 +42,22 @@ angular
 
             self.playerName = ""
 
+            self.iAmFire = false;
+
+            self.iAmIce = false;
+
             // assigns player ID
             function getMyId() {
                 if (self.gameBoard.player1.isHere === false) {
                     self.gameBoard.player1.isHere = true;
                     self.myId = "player 1";
+                    self.iAmFire = true;
                     self.gameBoard.player1.myName = self.playerName;
                 }
                 else if (self.gameBoard.player2.isHere === false) {
                     self.gameBoard.player2.isHere = true;
                     self.myId = "player 2";
+                    self.iAmIce = true;
                     self.gameBoard.player2.myName = self.playerName;
                 }
                 else {
@@ -93,7 +99,7 @@ angular
                         self.gameBoard.boxes[index].isO = true;
                         }
                         else {
-                           self.gameBoard.turn--; 
+                           self.gameBoard.turn--;
                         } 
 
                     }
@@ -276,6 +282,11 @@ angular
             }
 
         }
+
+
+
+
+
 
 
 
