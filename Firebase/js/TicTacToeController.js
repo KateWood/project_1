@@ -46,13 +46,13 @@ angular
             function getMyId() {
                 if (self.gameBoard.player1.isHere === false) {
                     self.gameBoard.player1.isHere = true;
-                    self.myId = self.playerName;
-                    self.gameBoard.player1.myName = self.myId;
+                    self.myId = "player 1";
+                    self.gameBoard.player1.myName = self.playerName;
                 }
                 else if (self.gameBoard.player2.isHere === false) {
                     self.gameBoard.player2.isHere = true;
-                    self.myId = self.playerName;
-                    self.gameBoard.player2.myName = self.myId;
+                    self.myId = "player 2";
+                    self.gameBoard.player2.myName = self.playerName;
                 }
                 else {
                     self.myId = "spectator";
@@ -89,11 +89,21 @@ angular
                     }
                     var myTurn = takeTurns();
                     if (myTurn === "o") {
+                        if (self.myId === "player 2") {
                         self.gameBoard.boxes[index].isO = true;
+                        }
+                        else {
+                           self.gameBoard.turn--; 
+                        } 
+
                     }
                     else if (myTurn === "x") {
+                        if (self.myId === "player 1") {
                         self.gameBoard.boxes[index].isX = true;
-
+                        }
+                        else {
+                           self.gameBoard.turn--; 
+                        }
                     }
                     self.gameBoard.$save(self.gameBoard.boxes);
                     self.getWinner();
@@ -237,40 +247,31 @@ angular
             }
 
             function resetScores() {
-                // prevents a game reset when a game is in progress
-                // prevents a game reset when a game is in progress
-                if (self.gameBoard.gameStatus === "Game in progress") {
-                    alert("Whoa! One game at a time!");
-                    return;
+                for (var i = 0; i < self.gameBoard.boxes.length; i++) {
+                    self.gameBoard.boxes[i].isX = false;
+                    self.gameBoard.boxes[i].isO = false;
+                    self.gameBoard.$save(self.gameBoard.boxes[i]);
                 }
-                // clears the board for a new game
-                else {
-                    for (var i = 0; i < self.gameBoard.boxes.length; i++) {
-                        self.gameBoard.boxes[i].isX = false;
-                        self.gameBoard.boxes[i].isO = false;
-                        self.gameBoard.$save(self.gameBoard.boxes[i]);
-                    }
 
-                    //resets the game status for the new game
-                    self.gameBoard.gameStatus = "Game in progress";
-                    self.gameBoard.$save(self.gameBoard.gameStatus);
-                    self.gameBoard.p1 = 0;
-                    self.gameBoard.$save(self.gameBoard.p1);
-                    self.gameBoard.p2 = 0;
-                    self.gameBoard.$save(self.gameBoard.p2);
-                    self.gameBoard.tie = 0;
-                    self.gameBoard.$save(self.gameBoard.tie);
-                    self.gameBoard.turn = 0;
-                    self.gameBoard.$save(self.gameBoard.turn);
-                    self.gameBoard.player1.isHere = false;
-                    self.gameBoard.$save(self.gameBoard.player1.isHere);
-                    self.gameBoard.player1.myName = "Fire";
-                    self.gameBoard.$save(self.gameBoard.player1.myName);
-                    self.gameBoard.player2.isHere = false;
-                    self.gameBoard.$save(self.gameBoard.player2.isHere);
-                    self.gameBoard.player2.myName = "Ice";
-                    self.gameBoard.$save(self.gameBoard.player2.myName);
-                }
+                //resets the game status for the new game
+                self.gameBoard.gameStatus = "Game in progress";
+                self.gameBoard.$save(self.gameBoard.gameStatus);
+                self.gameBoard.p1 = 0;
+                self.gameBoard.$save(self.gameBoard.p1);
+                self.gameBoard.p2 = 0;
+                self.gameBoard.$save(self.gameBoard.p2);
+                self.gameBoard.tie = 0;
+                self.gameBoard.$save(self.gameBoard.tie);
+                self.gameBoard.turn = 0;
+                self.gameBoard.$save(self.gameBoard.turn);
+                self.gameBoard.player1.isHere = false;
+                self.gameBoard.$save(self.gameBoard.player1.isHere);
+                self.gameBoard.player1.myName = "Fire";
+                self.gameBoard.$save(self.gameBoard.player1.myName);
+                self.gameBoard.player2.isHere = false;
+                self.gameBoard.$save(self.gameBoard.player2.isHere);
+                self.gameBoard.player2.myName = "Ice";
+                self.gameBoard.$save(self.gameBoard.player2.myName);
                 
             }
 
