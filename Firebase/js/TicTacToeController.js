@@ -46,6 +46,8 @@ angular
 
             self.iAmIce = false;
 
+            self.displayBoard = false;
+
             // assigns player ID
             function getMyId() {
                 if (self.gameBoard.player1.isHere === false) {
@@ -64,6 +66,7 @@ angular
                     self.myId = "spectator";
                 }
                 self.gameBoard.$save(self.gameBoard);
+                self.displayBoard = true;
             }
 
             /*
@@ -252,6 +255,10 @@ angular
                 
             }
 
+            /*
+             clears board, resets player IDs, and resets scores and turn counters
+             to start a new tournament
+            */
             function resetScores() {
                 for (var i = 0; i < self.gameBoard.boxes.length; i++) {
                     self.gameBoard.boxes[i].isX = false;
@@ -278,6 +285,7 @@ angular
                 self.gameBoard.$save(self.gameBoard.player2.isHere);
                 self.gameBoard.player2.myName = "Ice";
                 self.gameBoard.$save(self.gameBoard.player2.myName);
+                self.displayBoard = false;
                 
             }
 

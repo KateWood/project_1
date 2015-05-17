@@ -24,11 +24,21 @@ FORM {
 	float: left;
 }
 
-#board {
-	cursor: url(../images/pick-me.png), auto;
+.flipper {
 	width: 474px;
 	margin: 0 auto;
-	float: left;
+	transform-style: preserve-3d;
+	transition: all 1.0s linear;
+}
+
+#board {
+	cursor: url(../images/pick-me.png), auto;
+	width: 494px;
+	margin: 0 auto;
+	transform: rotateY(180deg);
+  	box-sizing: border-box;
+  	padding: 10px;
+  	color: white;
 }
 
 .isX {
@@ -87,6 +97,26 @@ BUTTON {
 
 INPUT {
 	color: black;
+}
+
+.face {
+  	position: absolute;
+  	width: 494px;
+  	height: 100%;
+  	backface-visibility: hidden;
+}
+
+.flipcontainer {
+	position: relative;
+  	margin: 10px auto;
+  	width: 474px;
+  	height: 384px;
+  	text-align: center;
+  	perspective: 1000px;
+}
+
+.displayBoard {
+	transform: rotateY(180deg);
 }
 
 
