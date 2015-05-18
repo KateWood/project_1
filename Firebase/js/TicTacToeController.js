@@ -19,7 +19,7 @@ angular
                 var gameBoard = $firebaseObject(ref);
                 return gameBoard;
             })();
-
+            
             // attaches takeTurns to the controller
             self.takeTurns = takeTurns;
 
