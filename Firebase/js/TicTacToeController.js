@@ -56,6 +56,7 @@ angular
                 if (self.gameBoard.player1.isHere === false) {
                     self.gameBoard.player1.isHere = true;
                     self.myId = "player 1";
+                    self.iAmIce = false;
                     self.iAmFire = true;
                     self.gameBoard.player1.myName = self.playerName;
                     self.waiting = true;
@@ -63,6 +64,7 @@ angular
                 else if (self.gameBoard.player2.isHere === false) {
                     self.gameBoard.player2.isHere = true;
                     self.myId = "player 2";
+                    self.iAmFire = false;
                     self.iAmIce = true;
                     self.gameBoard.player2.myName = self.playerName;
                     self.gameBoard.displayBoard = true;
@@ -70,6 +72,8 @@ angular
                 else {
                     self.myId = "spectator";
                 }
+                // clears input field
+                self.playerName = "";
                 self.gameBoard.$save(self.gameBoard);
             }
 
