@@ -5,7 +5,7 @@ BODY {
 }
 
 #container {
-	width: 1000px;
+	width: 1004px;
 	margin: 0 auto;
 }
 
@@ -114,11 +114,28 @@ INPUT {
   	height: 384px;
   	text-align: center;
   	perspective: 1000px;
+  	float: left;
 }
 
 .displayBoard {
 	transform: rotateY(180deg);
 }
+
+.chatList {
+	width: 250px;
+	padding-left: 20px;
+	float: left;
+}
+
+LI {
+	list-style: none;
+}
+
+UL {
+	height: 211px;
+	overflow: scroll;
+}
+
 
 
 

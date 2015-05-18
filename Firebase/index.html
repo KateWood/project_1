@@ -12,8 +12,9 @@
 	    <!-- links module and controller files -->
 		<script src="js/app.js"></script>
 		<script src="js/TicTacToeController.js"></script>
+		<script src="js/ChatController.js"></script>
 	</head>
-	<body ng-controller="TicTacToeController as tttCtrl" 
+	<body ng-controller="TicTacToeController as tttCtrl"
 	ng-class="{ 'fire': tttCtrl.iAmFire, 'ice': tttCtrl.iAmIce }">
 		<div id="container">
 			<h1>Tic-Tac-Toe</h1>
@@ -55,6 +56,21 @@
 						</div>
 					</div>
 				</div>				
+			</div>
+			<div class="chatList">
+				<main ng-controller="ChatController as chatCtrl">
+					<section>
+						<ul>
+							<li ng-repeat="chat in chatCtrl.chats">
+								<span>{{ chat.message }}</span>
+							</li>
+						</ul>
+					</section>
+					<form class="add-chat" ng-submit="chatCtrl.addChat()">
+						<input class="text-box" type="text" ng-model="chatCtrl.text">
+						<input type="submit" class="btn btn-add" value="send">
+					</form>
+				</main>
 			</div>
 		</div>
 	</body>
