@@ -94,8 +94,8 @@ angular
             */
             function chooseBox(index) {
                 if (self.gameBoard.gameStatus === "Game in progress") {
-                    if ((self.gameBoard.boxes[index].isX === true) 
-                        || (self.gameBoard.boxes[index].isO === true)) 
+                    if ((self.gameBoard.boxes[index].isX) 
+                        || (self.gameBoard.boxes[index].isO)) 
                     {
                         alert("Oops! This cell is already taken. Please select a different cell.");
                         return;
@@ -143,30 +143,30 @@ angular
 
                 // checks for x win
                 if (
-                    ((self.gameBoard.boxes[0].isX === true) 
-                        && (self.gameBoard.boxes[1].isX === true) 
-                        && (self.gameBoard.boxes[2].isX === true)) 
-                    || ((self.gameBoard.boxes[3].isX === true) 
-                        && (self.gameBoard.boxes[4].isX === true) 
-                        && (self.gameBoard.boxes[5].isX === true)) 
-                    || ((self.gameBoard.boxes[6].isX === true) 
-                        && (self.gameBoard.boxes[7].isX === true) 
-                        && (self.gameBoard.boxes[8].isX === true)) 
-                    || ((self.gameBoard.boxes[0].isX === true) 
-                        && (self.gameBoard.boxes[3].isX === true) 
-                        && (self.gameBoard.boxes[6].isX === true)) 
-                    || ((self.gameBoard.boxes[1].isX === true) 
-                        && (self.gameBoard.boxes[4].isX === true) 
-                        && (self.gameBoard.boxes[7].isX === true)) 
-                    || ((self.gameBoard.boxes[2].isX === true) 
-                        && (self.gameBoard.boxes[5].isX === true) 
-                        && (self.gameBoard.boxes[8].isX === true)) 
-                    || ((self.gameBoard.boxes[0].isX === true) 
-                        && (self.gameBoard.boxes[4].isX === true) 
-                        && (self.gameBoard.boxes[8].isX === true)) 
-                    || ((self.gameBoard.boxes[2].isX === true) 
-                        && (self.gameBoard.boxes[4].isX === true) 
-                        && (self.gameBoard.boxes[6].isX === true))
+                    ((self.gameBoard.boxes[0].isX) 
+                        && (self.gameBoard.boxes[1].isX) 
+                        && (self.gameBoard.boxes[2].isX)) 
+                    || ((self.gameBoard.boxes[3].isX) 
+                        && (self.gameBoard.boxes[4].isX) 
+                        && (self.gameBoard.boxes[5].isX)) 
+                    || ((self.gameBoard.boxes[6].isX)
+                        && (self.gameBoard.boxes[7].isX) 
+                        && (self.gameBoard.boxes[8].isX)) 
+                    || ((self.gameBoard.boxes[0].isX) 
+                        && (self.gameBoard.boxes[3].isX) 
+                        && (self.gameBoard.boxes[6].isX)) 
+                    || ((self.gameBoard.boxes[1].isX) 
+                        && (self.gameBoard.boxes[4].isX) 
+                        && (self.gameBoard.boxes[7].isX)) 
+                    || ((self.gameBoard.boxes[2].isX) 
+                        && (self.gameBoard.boxes[5].isX) 
+                        && (self.gameBoard.boxes[8].isX)) 
+                    || ((self.gameBoard.boxes[0].isX) 
+                        && (self.gameBoard.boxes[4].isX) 
+                        && (self.gameBoard.boxes[8].isX)) 
+                    || ((self.gameBoard.boxes[2].isX) 
+                        && (self.gameBoard.boxes[4].isX) 
+                        && (self.gameBoard.boxes[6].isX))
                 ){
                     /*
                      changes gameStatus & p1 score if x has won
@@ -180,30 +180,30 @@ angular
                 
                 // checks for o win
                 if (
-                    ((self.gameBoard.boxes[0].isO === true) 
-                        && (self.gameBoard.boxes[1].isO === true) 
-                        && (self.gameBoard.boxes[2].isO === true)) 
-                    || ((self.gameBoard.boxes[3].isO === true) 
-                        && (self.gameBoard.boxes[4].isO === true) 
-                        && (self.gameBoard.boxes[5].isO === true)) 
-                    || ((self.gameBoard.boxes[6].isO === true) 
-                        && (self.gameBoard.boxes[7].isO === true) 
-                        && (self.gameBoard.boxes[8].isO === true)) 
-                    || ((self.gameBoard.boxes[0].isO === true) 
-                        && (self.gameBoard.boxes[3].isO === true) 
-                        && (self.gameBoard.boxes[6].isO === true)) 
-                    || ((self.gameBoard.boxes[1].isO === true) 
-                        && (self.gameBoard.boxes[4].isO === true) 
-                        && (self.gameBoard.boxes[7].isO === true)) 
-                    || ((self.gameBoard.boxes[2].isO === true) 
-                        && (self.gameBoard.boxes[5].isO === true) 
-                        && (self.gameBoard.boxes[8].isO === true)) 
-                    || ((self.gameBoard.boxes[0].isO === true) 
-                        && (self.gameBoard.boxes[4].isO === true) 
-                        && (self.gameBoard.boxes[8].isO === true)) 
-                    || ((self.gameBoard.boxes[2].isO === true) 
-                        && (self.gameBoard.boxes[4].isO === true) 
-                        && (self.gameBoard.boxes[6].isO === true))
+                    ((self.gameBoard.boxes[0].isO) 
+                        && (self.gameBoard.boxes[1].isO) 
+                        && (self.gameBoard.boxes[2].isO)) 
+                    || ((self.gameBoard.boxes[3].isO) 
+                        && (self.gameBoard.boxes[4].isO) 
+                        && (self.gameBoard.boxes[5].isO)) 
+                    || ((self.gameBoard.boxes[6].isO) 
+                        && (self.gameBoard.boxes[7].isO) 
+                        && (self.gameBoard.boxes[8].isO)) 
+                    || ((self.gameBoard.boxes[0].isO) 
+                        && (self.gameBoard.boxes[3].isO) 
+                        && (self.gameBoard.boxes[6].isO)) 
+                    || ((self.gameBoard.boxes[1].isO) 
+                        && (self.gameBoard.boxes[4].isO) 
+                        && (self.gameBoard.boxes[7].isO)) 
+                    || ((self.gameBoard.boxes[2].isO) 
+                        && (self.gameBoard.boxes[5].isO) 
+                        && (self.gameBoard.boxes[8].isO)) 
+                    || ((self.gameBoard.boxes[0].isO) 
+                        && (self.gameBoard.boxes[4].isO) 
+                        && (self.gameBoard.boxes[8].isO)) 
+                    || ((self.gameBoard.boxes[2].isO) 
+                        && (self.gameBoard.boxes[4].isO) 
+                        && (self.gameBoard.boxes[6].isO))
                 ){
                     /*
                      changes gameStatus & p2 score if o has won
@@ -218,7 +218,8 @@ angular
                 // checks for tie
                 var cellEmpty = false;
                 for (var i = 0; i < self.gameBoard.boxes.length; i++) {
-                    if ((self.gameBoard.boxes[i].isX === false) && (self.gameBoard.boxes[i].isO === false)) {
+                    if ((self.gameBoard.boxes[i].isX === false) 
+                        && (self.gameBoard.boxes[i].isO === false)) {
                         cellEmpty = true;
                     }
                 }
@@ -282,6 +283,7 @@ angular
                 self.gameBoard.player2.myName = "Ice";
                 self.gameBoard.displayBoard = false;
                 self.gameBoard.$save(self.gameBoard)
+                self.waiting = false;
                 
             }
 
