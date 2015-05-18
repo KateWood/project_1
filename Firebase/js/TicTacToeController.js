@@ -38,15 +38,18 @@ angular
             // stores my player ID locally
             self.myId = null;
 
+            // attaches getMyId to controller
             self.getMyId = getMyId;
 
+            // stores playerName locally
             self.playerName = ""
 
+            // stores player ID locally
             self.iAmFire = false;
-
             self.iAmIce = false;
 
-            self.displayBoard = false;
+            // displays waiting message for player 1 when player 2 is false
+            self.waiting = false;
 
             // assigns player ID
             function getMyId() {
@@ -55,18 +58,19 @@ angular
                     self.myId = "player 1";
                     self.iAmFire = true;
                     self.gameBoard.player1.myName = self.playerName;
+                    self.waiting = true;
                 }
                 else if (self.gameBoard.player2.isHere === false) {
                     self.gameBoard.player2.isHere = true;
                     self.myId = "player 2";
                     self.iAmIce = true;
                     self.gameBoard.player2.myName = self.playerName;
+                    self.gameBoard.displayBoard = true;
                 }
                 else {
                     self.myId = "spectator";
                 }
                 self.gameBoard.$save(self.gameBoard);
-                self.displayBoard = true;
             }
 
             /*
@@ -268,24 +272,16 @@ angular
 
                 //resets the game status for the new game
                 self.gameBoard.gameStatus = "Game in progress";
-                self.gameBoard.$save(self.gameBoard.gameStatus);
                 self.gameBoard.p1 = 0;
-                self.gameBoard.$save(self.gameBoard.p1);
                 self.gameBoard.p2 = 0;
-                self.gameBoard.$save(self.gameBoard.p2);
                 self.gameBoard.tie = 0;
-                self.gameBoard.$save(self.gameBoard.tie);
                 self.gameBoard.turn = 0;
-                self.gameBoard.$save(self.gameBoard.turn);
                 self.gameBoard.player1.isHere = false;
-                self.gameBoard.$save(self.gameBoard.player1.isHere);
                 self.gameBoard.player1.myName = "Fire";
-                self.gameBoard.$save(self.gameBoard.player1.myName);
                 self.gameBoard.player2.isHere = false;
-                self.gameBoard.$save(self.gameBoard.player2.isHere);
                 self.gameBoard.player2.myName = "Ice";
-                self.gameBoard.$save(self.gameBoard.player2.myName);
-                self.displayBoard = false;
+                self.gameBoard.displayBoard = false;
+                self.gameBoard.$save(self.gameBoard)
                 
             }
 
