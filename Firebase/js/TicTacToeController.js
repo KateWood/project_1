@@ -19,7 +19,7 @@ angular
                 var gameBoard = $firebaseObject(ref);
                 return gameBoard;
             })();
-            
+
             // attaches takeTurns to the controller
             self.takeTurns = takeTurns;
 
@@ -68,6 +68,7 @@ angular
                     self.iAmIce = true;
                     self.gameBoard.player2.myName = self.playerName;
                     self.gameBoard.displayBoard = true;
+                    self.gameBoard.gameStatus = "Game in progress";
                 }
                 else {
                     self.myId = "spectator";
@@ -249,6 +250,10 @@ angular
                     alert("Whoa! One game at a time!");
                     return;
                 }
+                else if (self.gameBoard.gameStatus === "Waiting for players") {
+                    alert("We need two players to start a game.")
+                    return;
+                }
                 // clears the board for a new game
                 else {
                     for (var i = 0; i < self.gameBoard.boxes.length; i++) {
@@ -276,7 +281,7 @@ angular
                 }
 
                 //resets the game status for the new game
-                self.gameBoard.gameStatus = "Game in progress";
+                self.gameBoard.gameStatus = "Waiting for players";
                 self.gameBoard.p1 = 0;
                 self.gameBoard.p2 = 0;
                 self.gameBoard.tie = 0;
