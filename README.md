@@ -44,7 +44,7 @@ Fire goes first. You can click on any space - unless it's already taken!
 
 Play alternates until someone wins.
 <br>
-![Player 1 Wins](/images/player1win.png)
+![Player 1 Wins](/images/player1wins.png)
 
 When a game is over, you can click this button to start a new game:
 ![Play Again Button](/images/playagainbutton.png)
