@@ -30,6 +30,14 @@ Sign up to play:
 If you're the first player to sign up, you will get a fire background and a waiting message.
 <br>
 ![Player 1 Wait](/images/player1wait.png)
+<br>
+The second player gets an ice background.
+Once two players are signed up, the game can begin!
+<br>
+![Player 2 Start](/images/player2start.png)
+
+Fire goes first. You can click on any space...
+
 
 
 
