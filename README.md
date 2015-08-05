@@ -20,6 +20,16 @@ This is a fully functional Tic-Tac-Toe game which can be played on the same comp
 
 #### How It Works
 
-Welcome to Petnet!
+Welcome to my tic-tac-toe!
 <br>
-![Petnet Landing Page](/app/assets/images/petnetlanding.png)
+![Landing Page](/images/landing.png)
+
+Sign up to play:
+![Sign Up](/images/signup.png)
+<br>
+If you're the first player to sign up, you will get a fire background and a waiting message.
+<br>
+![Player 1 Wait](/images/player1wait.png)
+
+
+
