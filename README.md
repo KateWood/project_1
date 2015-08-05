@@ -36,7 +36,7 @@ Once two players are signed up, the game can begin!
 <br>
 ![Player 2 Start](/images/player2start.png)
 
-Fire goes first. You can click on any space...
+Fire goes first. You can click on any space - unless it's already taken!
 
 
 
