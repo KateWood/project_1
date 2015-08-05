@@ -37,6 +37,20 @@ Once two players are signed up, the game can begin!
 ![Player 2 Start](/images/player2start.png)
 
 Fire goes first. You can click on any space - unless it's already taken!
+<br>
+![Fire](/images/tttfire.png)
+<br>
+![Ice](/images/tttice.png)
+
+Play alternates until someone wins.
+<br>
+![Player 1 Wins](/images/player1win.png)
+
+When a game is over, you can click this button to start a new game:
+![Play Again Button](/images/playagainbutton.png)
+<br>
+Or, you can start a new tournament to reset the score:
+![New Tournament Button](/images/newtournybutton.png)
 
 
 
